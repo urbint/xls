@@ -91,7 +91,7 @@ func (rk RK) number() (intNum int64, floatNum float64, isFloat bool) {
 func (rk RK) String() string {
 	i, f, isFloat := rk.number()
 	if isFloat {
-		return fmt.Sprint(float64(f))
+		return strings.TrimRight(strings.TrimRight(fmt.Sprintf("%f", f), "0"), ".")
 	}
 	return strconv.FormatInt(i, 10)
 }
