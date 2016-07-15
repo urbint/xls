@@ -65,7 +65,7 @@ func (xf *XfRk) String(wb *WorkBook) string {
 				f = float64(i)
 			}
 			t := timeFromExcelTime(f, wb.dateMode == 1)
-			return t.Format("2006.01") //TODO it should be international
+			return t.Format(time.RFC3339) //TODO it should be international
 		}
 	}
 	return xf.Rk.String()
@@ -91,7 +91,7 @@ func (rk RK) number() (intNum int64, floatNum float64, isFloat bool) {
 func (rk RK) String() string {
 	i, f, isFloat := rk.number()
 	if isFloat {
-		return fmt.Sprintf("%.1f", f)
+		return fmt.Sprint(float64(f))
 	}
 	return strconv.FormatInt(i, 10)
 }
